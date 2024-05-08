@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="./book.module.js"></script>
+    <script src="./book.controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Simple CRUD BookStore</title>
+</head>
+<body ng-app="BookApp" ng-controller="bookController" class="contain">
+    <div class="search-div">
+        <p class="search-p">
+            <input class="search" type="text" ng-model="current_query" placeholder="Enter book name you want to search">
+            <button ng-click="getBooks()" class="search-btn">
+                <img class="search-icon" alt="Search Btn" src="./asssets/icons/search-icon.svg" />
+            </button>
+        </p>
+    </div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <form id="create-book">
+            <input class="book-infor__input" type="text" ng-model="book_interface.title" ng-required="true" placeholder="Enter new book name">
+            <input class="book-infor__input" type="text" ng-model="book_interface.author" ng-required="true" placeholder="Enter new book author">
+            <input class="book-infor__input" type="text" ng-model="book_interface.publication_year" ng-required="true" placeholder="Enter new book publication year">
+            <input class="book-infor__input" type="text" ng-model="book_interface.genre" ng-required="true" placeholder="Enter new book genre">
+            <input class="book-infor__input" type="text" ng-model="book_interface.description" ng-required="true" placeholder="Enter new book description">
+            <input class="book-infor__input" type="text" ng-model="book_interface.cover_image" ng-required="true" placeholder="Enter new book image">
+        </form>
+    </div>
+
+    <table class="books-contain">
+        <tr ng-repeat="book in books | filter: findBook" class="book-contain">
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+        </tr>
+    </table>
+      
+</body>
+</html>
