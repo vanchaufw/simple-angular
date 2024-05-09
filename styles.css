@@ -1,49 +1,122 @@
+/* Template for some css  */
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.medium-btn {
+    width: 7rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+/* End */
+
 body {
-    background-color: white;
-    margin: 1rem 2rem;
+    padding: 4rem 8rem;
 }
 
-.search-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+table, th, td {
+    border: 1px solid rgb(100, 82, 82);
+    border-collapse: collapse;
 }
 
-.search-p {
-    border-radius: 1rem;
-    border: 1px solid #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1px 10px;
+tr {
+    &:hover {
+        background-color: aquamarine;
+    }
 }
 
-.search {
-    width: 30rem;
+th, td {
     height: 2rem;
-    border: none;
-    outline: none;
+    text-align: start;
+    padding-left: 2rem;
 }
 
-.search-btn {
-    background-color: white;
-    border: none;
-}
 
-.search-icon {
-    width: 32px;
-    height: 32px;
-}
-
-#create-book {
-    width: 40%;
+.header {
     
 }
 
-.book-infor__input {
-    width: 100%;
-    min-width: 24rem;
-    height: 2rem;
-    margin-bottom: 1rem;
+.logo-img {
+    width: 6rem;
 }
 
+.header-content {
+    font-size: xx-large;
+}
+
+.add-btn { 
+    background-color: rgb(14, 146, 14, 0.9);
+    
+    &:hover {
+        background-color: rgb(14, 146, 14);
+    }
+}
+
+.contacts-contain {
+    margin-top: 2rem;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px 1rem;
+}
+
+.contact-contain {
+    
+}
+
+.contact-index,
+.contact-edit,
+.contact-delete {
+    width: 4rem;
+}
+
+.contact-name,
+.contact-phone {
+    width: 20rem;
+}
+
+
+.contact-btn {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

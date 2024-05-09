@@ -4,37 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="./book.module.js"></script>
-    <script src="./book.controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="./contact.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Simple CRUD BookStore</title>
+    <title>CRUD ContactApp</title>
 </head>
-<body ng-app="BookApp" ng-controller="bookController" class="contain">
-    <div class="search-div">
-        <p class="search-p">
-            <input class="search" type="text" ng-model="current_query" placeholder="Enter book name you want to search">
-            <button ng-click="getBooks()" class="search-btn">
-                <img class="search-icon" alt="Search Btn" src="./asssets/icons/search-icon.svg" />
-            </button>
-        </p>
-    </div>
-    <div style="display: flex; align-items: center; justify-content: center;">
-        <form id="create-book">
-            <input class="book-infor__input" type="text" ng-model="book_interface.title" ng-required="true" placeholder="Enter new book name">
-            <input class="book-infor__input" type="text" ng-model="book_interface.author" ng-required="true" placeholder="Enter new book author">
-            <input class="book-infor__input" type="text" ng-model="book_interface.publication_year" ng-required="true" placeholder="Enter new book publication year">
-            <input class="book-infor__input" type="text" ng-model="book_interface.genre" ng-required="true" placeholder="Enter new book genre">
-            <input class="book-infor__input" type="text" ng-model="book_interface.description" ng-required="true" placeholder="Enter new book description">
-            <input class="book-infor__input" type="text" ng-model="book_interface.cover_image" ng-required="true" placeholder="Enter new book image">
-        </form>
-    </div>
+<body ng-app="ContactApp" ng-controller="contactController" class="contain">
+    <div class="header">
+        <div class="flex-center">
+            <img alt="Logo" src="./asssets/images/logo.png" class="logo-img" />
+            <p class="header-content">Conntacts App</p>
+        </div>
 
-    <table class="books-contain">
-        <tr ng-repeat="book in books | filter: findBook" class="book-contain">
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-        </tr>
-    </table>
+        <div class="body-content">
+
+            <div class="add-contact">
+                <button class="add-btn medium-btn white">Add</button>
+            </div>
+
+            <table class="contacts-contain">
+                <tr class="contact-contain">
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr ng-repeat="contact in contacts" class="contact-contain">
+                    <td class="contact-index">{{ $index + 1 }}</td>
+                    <td class="contact-name">{{ contact.name }}</td>
+                    <td class="contact-phone">{{ contact.phoneNumber }}</td>
+                    <td class="contact-delete">
+                        <button class="contact-btn">
+                            <img alt="Delete Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
+                        </button>
+                    </td>
+                    <td class="contact-edit">
+                        <button class="contact-btn">
+                            <img alt="Edit Btn" src="./asssets/icons/trash.svg" class="contact-btn-icon" />
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            
+
+        </div>
+    </div>
       
 </body>
 </html>
