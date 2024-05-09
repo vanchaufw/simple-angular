@@ -54,12 +54,6 @@ table, th, td {
     border-collapse: collapse;
 }
 
-tr {
-    &:hover {
-        background-color: aquamarine;
-    }
-}
-
 th, td {
     height: 2rem;
     text-align: start;
@@ -107,6 +101,12 @@ th, td {
 .contact-name,
 .contact-phone {
     width: 20rem;
+}
+
+.editing-input,
+.deleting-input {
+    border: none;
+    font-size: 1rem;
 }
 
 
