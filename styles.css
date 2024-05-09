@@ -88,7 +88,7 @@ th, td {
 .search-input {
     width: 28rem;
     height: 2rem;
-    border: 1px solid black;
+    border: 1px solid rgb(100, 82, 82);
     border-radius: 6px;
     padding-left: 6px;
 }
@@ -96,7 +96,7 @@ th, td {
 .contacts-contain {
     margin-top: 2rem;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid rgb(100, 82, 82);
     padding: 10px 1rem;
 }
 
