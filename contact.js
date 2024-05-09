@@ -1,5 +1,6 @@
 angular.module('ContactApp', []).controller('contactController', function($scope) {
     $scope.adding = false;
+    $scope.search_contacts = "";
     $scope.new_contact = {
         id: 0,
         name: "",

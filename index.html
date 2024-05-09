@@ -1,3 +1,5 @@
+<!-- Implement paging, search for this page -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@
     <div class="header">
         <div class="flex-center">
             <img alt="Logo" src="./asssets/images/logo.png" class="logo-img" />
-            <p class="header-content">Conntacts App</p>
+            <p class="header-content">Contacts App</p>
         </div>
 
         <div class="body-content">
@@ -21,6 +23,9 @@
             <div class="add-contact">
                 <button class="add-btn medium-btn white" ng-hide="adding" ng-click="setAdding(true)">Add</button>
                 <button class="add-btn medium-btn white" ng-show="adding" ng-click="addContact()">Save</button>
+            </div>
+            <div class="search-bar">
+                <input placeholder="Enter name contacts you want to search" class="search-input" ng-model="search_contacts" />
             </div>
 
             <table class="contacts-contain">
@@ -31,7 +36,7 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr ng-repeat="contact in contacts" class="contact-contain">
+                <tr ng-repeat="contact in contacts | limitTo:5" ng-if="$index < 5" class="contact-contain">
                     <td class="contact-index">{{ $index + 1 }}</td>
                     <td class="contact-name"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.name" class="editing-input"></td>
                     <td class="contact-phone"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.phoneNumber" class="deleting-input"></td>

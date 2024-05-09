@@ -81,6 +81,18 @@ th, td {
     }
 }
 
+.search-bar {
+    padding-top: 1rem;
+}
+
+.search-input {
+    width: 28rem;
+    height: 2rem;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding-left: 6px;
+}
+
 .contacts-contain {
     margin-top: 2rem;
     width: 100%;
