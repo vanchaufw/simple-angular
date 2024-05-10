@@ -44,7 +44,46 @@ angular.module('ContactApp', []).controller('contactController', function($scope
             phoneNumber: '8424056205',
             isNotEditing: true,
         },
+        {
+            id: '11',
+            name: 'Ha Van Chau',
+            phoneNumber: '0123456789',
+            isNotEditing: true,
+        },
+        {
+            id: '12',
+            name: 'Nguyen Van A',
+            phoneNumber: '0987654321',
+            isNotEditing: true,
+        },
+        {
+            id: '13',
+            name: 'Tran Thi B',
+            phoneNumber: '0194973895',
+            isNotEditing: true,
+        },
+        {
+            id: '14',
+            name: 'Doan Van C',
+            phoneNumber: '1029499595',
+            isNotEditing: true,
+        },
+        {
+            id: '15',
+            name: 'Huynh Van DC',
+            phoneNumber: '1020948685',
+            isNotEditing: true,
+        },
+        {
+            id: '16',
+            name: 'Nguyen Thuy DFS',
+            phoneNumber: '8424056205',
+            isNotEditing: true,
+        },
     ]
+    $scope.displayValue = 5
+    $scope.startValue = 0
+
 
     $scope.getContacts = function() {
 
@@ -81,4 +120,27 @@ angular.module('ContactApp', []).controller('contactController', function($scope
         $scope.adding = false;
 
     }
+
+    $scope.pagingnation = function(isIncrease) {
+        if (isIncrease) {
+            if ($scope.startValue + $scope.displayValue >= $scope.contacts.length) {
+                return;
+            }
+
+            $scope.startValue = $scope.startValue + $scope.displayValue;
+        }
+        else {
+            if ($scope.startValue + $scope.displayValue <= 0) {
+                return;
+            }
+
+            $scope.startValue = $scope.startValue - $scope.displayValue;
+        }
+
+    }
+
+    $scope.updateDisplay = function() {
+        $scope.startValue = 0;
+    }
+ 
 });

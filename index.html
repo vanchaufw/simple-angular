@@ -1,4 +1,4 @@
-<!-- Implement paging, search for this page -->
+Implement paging, search for this page
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +36,10 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr ng-repeat="contact in contacts | limitTo:5" ng-if="$index < 5" class="contact-contain">
+                <tr ng-repeat="contact in contacts | filter: search_contacts | limitTo:displayValue:startValue" class="contact-contain">
                     <td class="contact-index">{{ $index + 1 }}</td>
-                    <td class="contact-name"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.name" class="editing-input"></td>
-                    <td class="contact-phone"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.phoneNumber" class="deleting-input"></td>
+                    <td class="contact-name"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.name" class="editing-input" required></td>
+                    <td class="contact-phone"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.phoneNumber" class="deleting-input" required></td>
                     <td class="contact-delete">
                         <button class="contact-btn" ng-click="editContact($index)">
                             <img alt="Delete Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
@@ -67,8 +67,25 @@
                     </td>
                 </tr>
             </table>
-            
 
+            <div class="flex-between paging-contain">
+                <div class="hidden-div"></div>
+                <div class="">
+                    <select ng-model="displayValue" ng-change="updateDisplay()">
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                    <button class="paging-btn">
+                        <img alt="Left btn" src="./asssets/icons/left.svg" class="paging-icon" ng-click="pagingnation(false)" />
+                    </button>
+                    <button class="paging-btn">
+                        <img alt="Right btn" src="./asssets/icons/right.svg" class="paging-icon" ng-click="pagingnation(true)" />
+                    </button>
+                </div>
+            </div>
+            
         </div>
     </div>
       

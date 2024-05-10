@@ -119,6 +119,7 @@ th, td {
 .deleting-input {
     border: none;
     font-size: 1rem;
+    outline: none;
 }
 
 
@@ -131,4 +132,20 @@ th, td {
     &:hover {
         cursor: pointer;
     }
+}
+
+.hidden-div {
+    opacity: 0;
+}
+
+.paging-contain {
+    margin-top: 1rem;
+}
+
+.paging-btn {
+}
+
+
+.paging-icon {
+    width: 24px;
 }
