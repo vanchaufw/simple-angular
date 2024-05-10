@@ -1,0 +1,135 @@
+/* Template for some css  */
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.medium-btn {
+    width: 7rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+/* End */
+
+body {
+    padding: 4rem 8rem;
+}
+
+table, th, td {
+    border: 1px solid rgb(100, 82, 82);
+    border-collapse: collapse;
+}
+
+th, td {
+    height: 2rem;
+    text-align: start;
+    padding-left: 2rem;
+}
+
+
+.header {
+    
+}
+
+.logo-img {
+    width: 6rem;
+}
+
+.header-content {
+    font-size: xx-large;
+}
+
+.add-btn { 
+    background-color: rgb(14, 146, 14, 0.9);
+    
+    &:hover {
+        background-color: rgb(14, 146, 14);
+    }
+}
+
+.search-bar {
+    padding-top: 1rem;
+}
+
+.search-input {
+    width: 28rem;
+    height: 2rem;
+    border: 1px solid rgb(100, 82, 82);
+    border-radius: 6px;
+    padding-left: 6px;
+}
+
+.contacts-contain {
+    margin-top: 2rem;
+    width: 100%;
+    border: 1px solid rgb(100, 82, 82);
+    padding: 10px 1rem;
+}
+
+.contact-contain {
+    
+}
+
+.contact-index,
+.contact-edit,
+.contact-delete {
+    width: 4rem;
+}
+
+.contact-name,
+.contact-phone {
+    width: 20rem;
+}
+
+.editing-input,
+.deleting-input {
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+
+.contact-btn {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

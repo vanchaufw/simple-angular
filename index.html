@@ -1,0 +1,76 @@
+<!-- Implement paging, search for this page -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="./contact.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>CRUD ContactApp</title>
+</head>
+<body ng-app="ContactApp" ng-controller="contactController" class="contain">
+    <div class="header">
+        <div class="flex-center">
+            <img alt="Logo" src="./asssets/images/logo.png" class="logo-img" />
+            <p class="header-content">Contacts App</p>
+        </div>
+
+        <div class="body-content">
+
+            <div class="add-contact">
+                <button class="add-btn medium-btn white" ng-hide="adding" ng-click="setAdding(true)">Add</button>
+                <button class="add-btn medium-btn white" ng-show="adding" ng-click="addContact()">Save</button>
+            </div>
+            <div class="search-bar">
+                <input placeholder="Enter name contacts you want to search" class="search-input" ng-model="search_contacts" />
+            </div>
+
+            <table class="contacts-contain">
+                <tr class="contact-contain">
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                <tr ng-repeat="contact in contacts | filter: search_contacts" class="contact-contain">
+                    <td class="contact-index">{{ $index + 1 }}</td>
+                    <td class="contact-name"><input type="text" ng-disabled="contact.isNoEditing" ng-model="contact.fullname" class="editing-input"></td>
+                    <td class="contact-phone"><input type="text" ng-disabled="contact.isNoEditing" ng-model="contact.phone" class="deleting-input"></td>
+                    <td class="contact-delete">
+                        <button class="contact-btn" ng-click="editContact(contact.id, $index)">
+                            <img alt="Edit Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
+                        </button>
+                    </td>
+                    <td class="contact-edit">
+                        <button class="contact-btn" ng-click="deleteContact(contact.id, $index)">
+                            <img alt="Delete Btn" src="./asssets/icons/trash.svg" class="contact-btn-icon" />
+                        </button>
+                    </td>
+                </tr>
+                <tr ng-show="adding" class="contact-contain">
+                    <td class="contact-index">{{ contacts.length + 1 }}</td>
+                    <td class="contact-name"><input type="text" ng-model="new_contact.fullname" class="editing-input"></td>
+                    <td class="contact-phone"><input type="text" ng-model="new_contact.phone" class="deleting-input"></td>
+                    <td class="contact-delete">
+                        <button class="contact-btn">
+                            <img alt="Delete Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
+                        </button>
+                    </td>
+                    <td class="contact-edit">
+                        <button class="contact-btn">
+                            <img alt="Edit Btn" src="./asssets/icons/trash.svg" class="contact-btn-icon" />
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            
+
+        </div>
+    </div>
+      
+</body>
+</html>
