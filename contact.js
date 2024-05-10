@@ -10,6 +10,9 @@ angular
       phone: "",
     };
 
+    $scope.displayValue = 5;
+    $scope.startValue = 0;
+
     $scope.getContacts = function () {
       $http
         .get(`http://localhost:3000/api/contacts`)
@@ -33,7 +36,7 @@ angular
         return;
       }
 
-      if ($scope.contacts[index].isNoEditing) {
+      if (!$scope.contacts[index].isNoEditing) {
         const new_name = $scope.contacts[index].fullname;
         const new_phone = $scope.contacts[index].phone;
 
@@ -52,8 +55,6 @@ angular
       }
       $scope.contacts[index].isNoEditing = !$scope.contacts[index].isNoEditing;
     };
-
-    $scope.getContacts();
 
     $scope.deleteContact = function (id, index) {
       $http
@@ -102,4 +103,23 @@ angular
       };
       $scope.adding = false;
     };
+
+    $scope.pagingnation = function (isIncrease) {
+        if (isIncrease) {
+            if ($scope.startValue + $scope.displayValue >= $scope.contacts.length) {
+                return;
+            }
+            $scope.startValue = $scope.startValue + $scope.displayValue;
+        }
+        else {
+            if ($scope.startValue - $scope.displayValue < 0) {
+                return;
+            }
+            $scope.startValue = $scope.startValue - $scope.displayValue;
+        }
+    }
+
+
+    $scope.getContacts();
+
   });

@@ -36,17 +36,17 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr ng-repeat="contact in contacts | filter: search_contacts" class="contact-contain">
-                    <td class="contact-index">{{ $index + 1 }}</td>
+                <tr ng-repeat="contact in contacts | filter: search_contacts | limitTo:displayValue:startValue" class="contact-contain">
+                    <td class="contact-index">{{ $index + 1 + startValue }}</td>
                     <td class="contact-name"><input type="text" ng-disabled="contact.isNoEditing" ng-model="contact.fullname" class="editing-input"></td>
                     <td class="contact-phone"><input type="text" ng-disabled="contact.isNoEditing" ng-model="contact.phone" class="deleting-input"></td>
                     <td class="contact-delete">
-                        <button class="contact-btn" ng-click="editContact(contact.id, $index)">
+                        <button class="contact-btn" ng-click="editContact(contact.id, $index + startValue)">
                             <img alt="Edit Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
                         </button>
                     </td>
                     <td class="contact-edit">
-                        <button class="contact-btn" ng-click="deleteContact(contact.id, $index)">
+                        <button class="contact-btn" ng-click="deleteContact(contact.id, $index + startValue)">
                             <img alt="Delete Btn" src="./asssets/icons/trash.svg" class="contact-btn-icon" />
                         </button>
                     </td>
@@ -68,7 +68,17 @@
                 </tr>
             </table>
             
-
+            <div class="flex-between paging-contain">
+                <div class="hidden-div"></div>
+                <div class="">
+                    <button class="paging-btn">
+                        <img alt="Left btn" src="./asssets/icons/left.svg" class="paging-icon" ng-click="pagingnation(fasle)" />
+                    </button>
+                    <button class="paging-btn">
+                        <img alt="Right btn" src="./asssets/icons/right.svg" class="paging-icon" ng-click="pagingnation(true)" />
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
       

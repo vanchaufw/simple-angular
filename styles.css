@@ -133,3 +133,19 @@ th, td {
         cursor: pointer;
     }
 }
+
+.paging-contain {
+    margin-top: 1rem;
+}
+
+.hidden-div {
+    opacity: 0;
+}
+
+.paging-btn {
+
+}
+
+.paging-icon {
+    width: 24px;
+}
