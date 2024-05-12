@@ -1,93 +1,37 @@
-Implement paging, search for this page
+<!-- Implement paging, search for this page -->
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-    <script src="./contact.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="./components/contacts/contact.controller.js"></script>
+    <script src="./services/contact/contact.serivce.js"></script>/
+    <script src="./custom-directive/paging/paging.directive.js"></script>
+    <script src="./custom-directive/search-contact/search.directive.js"></script>
+    <script src="./custom-directive/add-contact/add-contact.directive.js"></script>
+    <script src="./custom-directive/table-contacts/table-contacts.directive.js"></script>
+    <script src="./ultils/generateId.js"></script>
+    <script src="./ultils/pagingnation.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <title>CRUD ContactApp</title>
-</head>
-<body ng-app="ContactApp" ng-controller="contactController" class="contain">
+  </head>
+  <body ng-app="ContactApp" ng-controller="contactController" class="contain">
     <div class="header">
-        <div class="flex-center">
-            <img alt="Logo" src="./asssets/images/logo.png" class="logo-img" />
-            <p class="header-content">Contacts App</p>
-        </div>
+      <div class="flex-center">
+        <img alt="Logo" src="./asssets/images/logo.png" class="logo-img" />
+        <p class="header-content">Contacts App</p>
+      </div>
 
-        <div class="body-content">
-
-            <div class="add-contact">
-                <button class="add-btn medium-btn white" ng-hide="adding" ng-click="setAdding(true)">Add</button>
-                <button class="add-btn medium-btn white" ng-show="adding" ng-click="addContact()">Save</button>
-            </div>
-            <div class="search-bar">
-                <input placeholder="Enter name contacts you want to search" class="search-input" ng-model="search_contacts" />
-            </div>
-
-            <table class="contacts-contain">
-                <tr class="contact-contain">
-                    <th>Index</th>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                <tr ng-repeat="contact in contacts | filter: search_contacts | limitTo:displayValue:startValue" class="contact-contain">
-                    <td class="contact-index">{{ $index + 1 }}</td>
-                    <td class="contact-name"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.name" class="editing-input" required></td>
-                    <td class="contact-phone"><input type="text" ng-disabled="contact.isNotEditing" ng-model="contact.phoneNumber" class="deleting-input" required></td>
-                    <td class="contact-delete">
-                        <button class="contact-btn" ng-click="editContact($index)">
-                            <img alt="Delete Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
-                        </button>
-                    </td>
-                    <td class="contact-edit">
-                        <button class="contact-btn" ng-click="deleteContact($index)">
-                            <img alt="Edit Btn" src="./asssets/icons/trash.svg" class="contact-btn-icon" />
-                        </button>
-                    </td>
-                </tr>
-                <tr ng-show="adding" class="contact-contain">
-                    <td class="contact-index">{{ contacts.length + 1 }}</td>
-                    <td class="contact-name"><input type="text" ng-model="new_contact.name" class="editing-input"></td>
-                    <td class="contact-phone"><input type="text" ng-model="new_contact.phoneNumber" class="deleting-input"></td>
-                    <td class="contact-delete">
-                        <button class="contact-btn" ng-click="editContact($index)">
-                            <img alt="Delete Btn" src="./asssets/icons/edit.svg" class="contact-btn-icon" />
-                        </button>
-                    </td>
-                    <td class="contact-edit">
-                        <button class="contact-btn" ng-click="deleteContact($index)">
-                            <img alt="Edit Btn" src="./asssets/icons/trash.svg" class="contact-btn-icon" />
-                        </button>
-                    </td>
-                </tr>
-            </table>
-
-            <div class="flex-between paging-contain">
-                <div class="hidden-div"></div>
-                <div class="">
-                    <select ng-model="displayValue" ng-change="updateDisplay()">
-                        <option value="2">2</option>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                    </select>
-                    <button class="paging-btn">
-                        <img alt="Left btn" src="./asssets/icons/left.svg" class="paging-icon" ng-click="pagingnation(false)" />
-                    </button>
-                    <button class="paging-btn">
-                        <img alt="Right btn" src="./asssets/icons/right.svg" class="paging-icon" ng-click="pagingnation(true)" />
-                    </button>
-                </div>
-            </div>
-            
-        </div>
+      <div class="body-content">
+        
+        <add-contact set-adding="setAdding()" add-contact="addContact()" show="adding"></add-contact>
+        <search on-search="searchContacts = query"></search>
+        <table-contacts></table-contacts>
+        <paging on-next="pagingnation(true)" on-previous="pagingnation(false)"></paging>
+      </div>
     </div>
-      
-</body>
+  </body>
 </html>
