@@ -111,15 +111,16 @@ th, td {
 }
 
 .contact-name,
-.contact-phone {
-    width: 20rem;
+.contact-phone,
+.contact-email {
+    width: 15rem;
 }
 
-.editing-input,
-.deleting-input {
+.contact-input {
     border: none;
     font-size: 1rem;
     outline: none;
+    background-color: white;
 }
 
 
@@ -143,9 +144,15 @@ th, td {
 }
 
 .paging-btn {
-
+    margin-left: 1rem;
 }
 
 .paging-icon {
     width: 24px;
+}
+
+.select-paging {
+    width: 3rem;
+    height: 2rem;
+    margin: 0 1rem;
 }

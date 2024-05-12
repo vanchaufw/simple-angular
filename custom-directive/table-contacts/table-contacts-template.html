@@ -1,0 +1,106 @@
+<table class="contacts-contain">
+    <tr class="contact-contain">
+      <th>Index</th>
+      <th>Name</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr
+      ng-repeat="contact in contacts | filter: searchContacts | limitTo:displayValue:startValue"
+      class="contact-contain"
+    >
+      <td class="contact-index">{{ $index + 1 + startValue }}</td>
+      <td class="contact-name">
+        <input
+          type="text"
+          ng-disabled="contact.isNoEditing"
+          ng-model="contact.fullname"
+          class="contact-input"
+        />
+      </td>
+      <td class="contact-phone">
+        <input
+          type="text"
+          ng-disabled="contact.isNoEditing"
+          ng-model="contact.phone"
+          class="contact-input"
+        />
+      </td>
+      <td class="contact-email">
+        <input
+          type="text"
+          ng-disabled="contact.isNoEditing"
+          ng-model="contact.email"
+          class="contact-input"
+        />
+      </td>
+      <td class="contact-delete">
+        <button
+          class="contact-btn"
+          ng-click="editContact(contact.id, $index + startValue)"
+        >
+          <img
+            alt="Edit Btn"
+            src="./asssets/icons/edit.svg"
+            class="contact-btn-icon"
+          />
+        </button>
+      </td>
+      <td class="contact-edit">
+        <button
+          class="contact-btn"
+          ng-click="deleteContact(contact.id, $index + startValue)"
+        >
+          <img
+            alt="Delete Btn"
+            src="./asssets/icons/trash.svg"
+            class="contact-btn-icon"
+          />
+        </button>
+      </td>
+    </tr>
+    <tr ng-show="adding" class="contact-contain">
+      <td class="contact-index">{{ contacts.length + 1 }}</td>
+      <td class="contact-name">
+        <input
+          type="text"
+          ng-model="newContact.fullname"
+          class="contact-input"
+        />
+      </td>
+      <td class="contact-phone">
+        <input
+          type="text"
+          ng-model="newContact.phone"
+          class="contact-input"
+        />
+      </td>
+      <td class="contact-email">
+        <input
+          type="text"
+          ng-model="newContact.email"
+          class="contact-input"
+        />
+      </td>
+      <td class="contact-delete">
+        <button class="contact-btn">
+          <img
+            alt="Delete Btn"
+            src="./asssets/icons/edit.svg"
+            class="contact-btn-icon"
+          />
+        </button>
+      </td>
+      <td class="contact-edit">
+        <button class="contact-btn">
+          <img
+            alt="Edit Btn"
+            src="./asssets/icons/trash.svg"
+            class="contact-btn-icon"
+          />
+        </button>
+      </td>
+    </tr>
+  </table>
