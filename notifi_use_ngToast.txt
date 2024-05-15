@@ -1,0 +1,26 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-toast/2.5.3/ngToast.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-toast/2.5.3/ngToast.min.css">
+
+var app = angular.module('ContactApp', ['ngRoute', 'ngToast']);
+app.controller('contactController', function($scope, ngToast) {
+    // Hàm để hiển thị thông báo
+    $scope.showToast = function(message, type) {
+        ngToast.create({
+            content: message,
+            className: type, // có thể là 'success', 'warning', 'danger', 'info' tùy vào loại thông báo
+            timeout: 3000 // Thời gian hiển thị thông báo (miligiây)
+        });
+    };
+
+    // Sử dụng:
+    $scope.showToast('Thêm mới thành công', 'success');
+});
+
+/* CSS tùy chỉnh cho thông báo */
+.ngtoast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 300px;
+}

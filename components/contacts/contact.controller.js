@@ -16,6 +16,9 @@ angular
       $scope.displayValue = 5;
       $scope.startValue = 0;
 
+      // This variable to check valid of user data
+      $scope.isValidInformation = true;
+
       $scope.getContacts = function () {
         ContactService.getContacts()
           .then(function (response) {
@@ -42,6 +45,10 @@ angular
           return;
         }
 
+        if (!$scope.contacts[index].isNoEditing && Object.values($scope.newContact).includes("")) {
+          return;
+        }
+
         if (!$scope.contacts[index].isNoEditing) {
           const response = ContactService.editContact(
             id,
@@ -50,9 +57,10 @@ angular
             $scope.contacts[index].email
           );
           console.log(response);
+          // Change edit to False and True and conversely
+          $scope.contacts[index].isNoEditing =
+            !$scope.contacts[index].isNoEditing;
         }
-        $scope.contacts[index].isNoEditing =
-          !$scope.contacts[index].isNoEditing;
       };
 
       $scope.deleteContact = function (id, index) {
