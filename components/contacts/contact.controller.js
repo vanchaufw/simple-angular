@@ -48,6 +48,13 @@ angular
           return;
         }
 
+        if (
+          !$scope.contacts[index].isNoEditing &&
+          Object.values($scope.newContact).includes("")
+        ) {
+          return;
+        }
+
         if (!$scope.contacts[index].isNoEditing) {
           ContactService.editContact(
             contact_id,
@@ -65,7 +72,7 @@ angular
       };
 
       $scope.deleteContact = function (contact_id) {
-        const index = $scope.getIndex(contact_id)
+        const index = $scope.getIndex(contact_id);
         ContactService.deleteContact(contact_id).then(function (response) {
           if (response.data.status == "deleted") {
             $scope.contacts.splice(index, 1);
@@ -86,13 +93,13 @@ angular
           $scope.adding = false;
           return;
         }
-
-        $scope.newContact.id = GenerateIdService.generate(30);
         ContactService.addContact($scope.newContact).then(function (response) {
           if (response.data.status == "created") {
             $scope.contacts.push({ ...$scope.newContact });
             $scope.newContact = {
-              id: 0,
+              user_id: "",
+              contact_id: "",
+              username: "",
               fullname: "",
               phone: "",
               email: "",
