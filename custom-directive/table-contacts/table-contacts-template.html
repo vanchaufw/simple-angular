@@ -1,6 +1,7 @@
 <table class="contacts-contain">
     <tr class="contact-contain">
       <th>Index</th>
+      <th>Username</th>
       <th>Name</th>
       <th>Phone Number</th>
       <th>Email</th>
@@ -12,6 +13,14 @@
       class="contact-contain"
     >
       <td class="contact-index">{{ $index + 1 + startValue }}</td>
+      <td class="contact-username">
+        <input
+          type="text"
+          ng-disabled="contact.isNoEditing"
+          ng-model="contact.username"
+          class="contact-input"
+        />
+      </td>
       <td class="contact-name">
         <input
           type="text"
@@ -39,7 +48,7 @@
       <td class="contact-delete">
         <button
           class="contact-btn"
-          ng-click="editContact(contact.id, $index + startValue)"
+          ng-click="editContact(contact.contact_id)"
         >
           <img
             alt="Edit Btn"
@@ -51,7 +60,7 @@
       <td class="contact-edit">
         <button
           class="contact-btn"
-          ng-click="deleteContact(contact.id, $index + startValue)"
+          ng-click="deleteContact(contact.contact_id)"
         >
           <img
             alt="Delete Btn"
@@ -63,6 +72,13 @@
     </tr>
     <tr ng-show="adding" class="contact-contain">
       <td class="contact-index">{{ contacts.length + 1 }}</td>
+      <td class="contact-username">
+        <input
+          type="text"
+          ng-model="newContact.username"
+          class="contact-input"
+        />
+      </td>
       <td class="contact-name">
         <input
           type="text"

@@ -3,7 +3,7 @@ angular.module("ContactApp").service("ContactService", function ($http, $q) {
   this.getContacts = function () {
     const deferred = $q.defer();
     $http
-      .get(`http://localhost:3000/api/contacts`)
+      .get(`http://localhost/contact-be-php/index.php/api/contacts`)
       .then(function (response) {
         deferred.resolve(response.data);
       })
@@ -13,17 +13,26 @@ angular.module("ContactApp").service("ContactService", function ($http, $q) {
     return deferred.promise;
   };
 
-  this.editContact = function (id, fullname, phone, email) {
+  this.editContact = function (id, username, fullname, phone, email) {
     const deferred = $q.defer();
     $http
-      .put(`http://localhost:3000/api/contacts`, {
-        id: id,
-        fullname: fullname,
-        phone: phone,
-        email: email,
-      })
+      .put(
+        `http://localhost/contact-be-php/index.php/api/contacts/${id}`,
+        {
+          username: username,
+          fullname: fullname,
+          phone: phone,
+          email: email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      )
       .then(function (response) {
-        deferred.resolve(response.data);
+        deferred.resolve(response);
       })
       .catch(function (error) {
         deferred.reject(error);
@@ -34,9 +43,9 @@ angular.module("ContactApp").service("ContactService", function ($http, $q) {
   this.deleteContact = function (id) {
     const deferred = $q.defer();
     $http
-      .delete(`http://localhost:3000/api/contacts/${id}`)
+      .delete(`http://localhost/contact-be-php/index.php/api/contacts/${id}`)
       .then(function (response) {
-        deferred.resolve(response.data);
+        deferred.resolve(response);
       })
       .catch(function (error) {
         deferred.reject(error);
@@ -47,9 +56,9 @@ angular.module("ContactApp").service("ContactService", function ($http, $q) {
   this.addContact = function (contact) {
     const deferred = $q.defer();
     $http
-      .post(`http://localhost:3000/api/contacts`, contact)
+      .post(`http://localhost/contact-be-php/index.php/api/contacts`, contact)
       .then(function (response) {
-        deferred.resolve(response.data.msg);
+        deferred.resolve(response);
       })
       .catch(function (error) {
         deferred.reject(error);

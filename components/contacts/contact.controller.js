@@ -7,7 +7,9 @@ angular
       $scope.searchContacts = "";
       $scope.contacts = [];
       $scope.newContact = {
-        id: 0,
+        user_id: "",
+        contact_id: "",
+        username: "",
         fullname: "",
         phone: "",
         email: "",
@@ -15,6 +17,12 @@ angular
 
       $scope.displayValue = 5;
       $scope.startValue = 0;
+
+      $scope.getIndex = function (contact_id) {
+        return $scope.contacts.findIndex(
+          (contact) => contact.contact_id == contact_id
+        );
+      };
 
       $scope.getContacts = function () {
         ContactService.getContacts()
@@ -27,38 +35,43 @@ angular
             } else {
               console.error(response);
             }
+            console.log($scope.contacts);
           })
           .catch(function (error) {
             console.error("Error fetching contacts:", error);
           });
       };
 
-      $scope.editContact = function (id, index) {
-        if (
-          index == undefined ||
-          (index < 0 && index >= $scope.contacts.length)
-        ) {
-          console.log(index);
+      $scope.editContact = function (contact_id) {
+        const index = $scope.getIndex(contact_id);
+        if (index == undefined) {
           return;
         }
 
         if (!$scope.contacts[index].isNoEditing) {
-          const response = ContactService.editContact(
-            id,
+          ContactService.editContact(
+            contact_id,
+            $scope.contacts[index].username,
             $scope.contacts[index].fullname,
             $scope.contacts[index].phone,
             $scope.contacts[index].email
-          );
+          ).then(function (response) {
+            alert(response.data.message);
+          });
           console.log(response);
         }
         $scope.contacts[index].isNoEditing =
           !$scope.contacts[index].isNoEditing;
       };
 
-      $scope.deleteContact = function (id, index) {
-        ContactService.deleteContact(id).then(function (response) {
-          if (response.msg == "Deleted") {
+      $scope.deleteContact = function (contact_id) {
+        const index = $scope.getIndex(contact_id)
+        ContactService.deleteContact(contact_id).then(function (response) {
+          if (response.data.status == "deleted") {
             $scope.contacts.splice(index, 1);
+            alert(response.data.status);
+          } else {
+            alert(response.data.message);
           }
           console.log(response);
         });
@@ -76,7 +89,7 @@ angular
 
         $scope.newContact.id = GenerateIdService.generate(30);
         ContactService.addContact($scope.newContact).then(function (response) {
-          if (response.msg == "Created") {
+          if (response.data.status == "created") {
             $scope.contacts.push({ ...$scope.newContact });
             $scope.newContact = {
               id: 0,
@@ -84,6 +97,9 @@ angular
               phone: "",
               email: "",
             };
+            alert(response.data.status);
+          } else {
+            alert(response.data.message);
           }
           console.log(response);
         });
