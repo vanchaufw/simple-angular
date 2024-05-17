@@ -2,7 +2,7 @@ angular
   .module("ContactApp", [])
   .controller(
     "contactController",
-    function ($scope, ContactService, GenerateIdService, PaginationService) {
+    function ($scope, ContactService, PaginationService) {
       $scope.adding = false;
       $scope.searchContacts = "";
       $scope.contacts = [];
@@ -23,6 +23,18 @@ angular
           (contact) => contact.contact_id == contact_id
         );
       };
+
+      $scope.$watch('newContact.username', function(newUsername, oldUsername) {
+        if (newUsername != oldUsername) {
+          var existingContact = $scope.contacts.find(function(contact) {
+            return contact.username == $scope.newContact.username;
+          });
+          if (existingContact) {
+            $scope.newContact.fullname = existingContact.fullname;
+          }
+          console.log('watching')
+        }
+      })
 
       $scope.getContacts = function () {
         ContactService.getContacts()

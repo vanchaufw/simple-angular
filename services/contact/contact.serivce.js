@@ -65,4 +65,6 @@ angular.module("ContactApp").service("ContactService", function ($http, $q) {
       });
     return deferred.promise;
   };
+
+  
 });
