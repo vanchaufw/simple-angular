@@ -24,17 +24,17 @@ angular
         );
       };
 
-      $scope.$watch('newContact.username', function(newUsername, oldUsername) {
+      $scope.$watch("newContact.username", function (newUsername, oldUsername) {
         if (newUsername != oldUsername) {
-          var existingContact = $scope.contacts.find(function(contact) {
+          var existingContact = $scope.contacts.find(function (contact) {
             return contact.username == $scope.newContact.username;
           });
           if (existingContact) {
             $scope.newContact.fullname = existingContact.fullname;
           }
-          console.log('watching')
+          console.log("watching");
         }
-      })
+      });
 
       $scope.getContacts = function () {
         ContactService.getContacts()
@@ -62,7 +62,7 @@ angular
 
         if (
           !$scope.contacts[index].isNoEditing &&
-          Object.values($scope.newContact).includes("")
+          Object.values($scope.contacts[index]).includes("")
         ) {
           return;
         }
@@ -74,10 +74,13 @@ angular
             $scope.contacts[index].fullname,
             $scope.contacts[index].phone,
             $scope.contacts[index].email
-          ).then(function (response) {
-            alert(response.data.message);
-          });
-          console.log(response);
+          )
+            .then(function (response) {
+              alert(response.data.status);
+            })
+            .catch(function (error) {
+              alert(error.data.message);
+            });
         }
         $scope.contacts[index].isNoEditing =
           !$scope.contacts[index].isNoEditing;
@@ -85,15 +88,19 @@ angular
 
       $scope.deleteContact = function (contact_id) {
         const index = $scope.getIndex(contact_id);
-        ContactService.deleteContact(contact_id).then(function (response) {
-          if (response.data.status == "deleted") {
-            $scope.contacts.splice(index, 1);
-            alert(response.data.status);
-          } else {
-            alert(response.data.message);
-          }
-          console.log(response);
-        });
+        ContactService.deleteContact(contact_id)
+          .then(function (response) {
+            if (response.data.status == "deleted") {
+              $scope.contacts.splice(index, 1);
+              alert(response.data.status);
+            } else {
+              alert(response.data.message);
+            }
+            console.log(response);
+          })
+          .catch(function (error) {
+            alert(error.data.message);
+          });
       };
 
       $scope.setAdding = function () {
@@ -105,23 +112,27 @@ angular
           $scope.adding = false;
           return;
         }
-        ContactService.addContact($scope.newContact).then(function (response) {
-          if (response.data.status == "created") {
-            $scope.contacts.push({ ...$scope.newContact });
-            $scope.newContact = {
-              user_id: "",
-              contact_id: "",
-              username: "",
-              fullname: "",
-              phone: "",
-              email: "",
-            };
-            alert(response.data.status);
-          } else {
-            alert(response.data.message);
-          }
-          console.log(response);
-        });
+        ContactService.addContact($scope.newContact)
+          .then(function (response) {
+            if (response.data.status == "created") {
+              $scope.contacts.push({ ...$scope.newContact });
+              $scope.newContact = {
+                user_id: "",
+                contact_id: "",
+                username: "",
+                fullname: "",
+                phone: "",
+                email: "",
+              };
+              alert(response.data.status);
+            } else {
+              alert(response.data.message);
+            }
+            console.log(response);
+          })
+          .catch(function (error) {
+            alert(error.data.message);
+          });
         $scope.adding = false;
       };
 
